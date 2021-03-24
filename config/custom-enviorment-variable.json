@@ -1,0 +1,5 @@
+{
+    "db": "mongodb+srv://sarosh:zaqxswcde1@cluster0.zk5ap.mongodb.net/test",
+    "jwtPrivateKey" : "SomePrivateKey"
+
+}
