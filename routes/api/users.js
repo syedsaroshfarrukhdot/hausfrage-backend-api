@@ -69,7 +69,7 @@ router.post("/login", async (req, res) => {
   let isValid = await bcrypt.compare(req.body.password, user.password);
   if (!isValid) return res.status(401).send("Invalid Password");
   let token = jwt.sign(
-    { _id: user._id, name: user.name, role: user.role },
+    { _id: user._id, first_name: user.first_name, middle_name: user.middle_name, last_name : user.last_name , role: user.role },
     config.get("jwtPrivateKey")
   );
   return res.send(token);
@@ -77,7 +77,6 @@ router.post("/login", async (req, res) => {
 
   // Update User
   router.put("/:id", auth ,admin, upload ,async (req, res) => {
-    console.log(req.file);
     try {
       let user = await User.findById(req.params.id);
       if (!user) return res.status(400).send("User with given id is not present");
@@ -87,9 +86,21 @@ router.post("/login", async (req, res) => {
       user.email = req.body.email;
       user.image = req.file.path;
       user.password = req.body.password;
+      await user.generateHashedPassword();
       await user.save();
-      return res.send(user);
-    } catch {
+      let token = jwt.sign(
+        { _id: user._id, first_name: user.first_name, middle_name: user.middle_name, last_name : user.last_name , role: user.role },
+        config.get("jwtPrivateKey")
+      );
+      let dataToReturn = {
+        first_name: user.first_name,
+        middle_name: user.middle_name,
+        last_name: user.last_name,
+        email: user.email,
+        token: user.token,
+      };
+      return res.send(dataToReturn);
+    } catch (err){
       return res.status(400).send("Invalid Id"); // when id is inavlid
     }
   });
