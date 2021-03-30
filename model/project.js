@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Tasks } = require("./task");
 
 const projectScheme = mongoose.Schema({
 
@@ -9,7 +10,11 @@ const projectScheme = mongoose.Schema({
     est_hrs : Number,
     status : { type: Number,  max: 3 },
     remarks : String,
-    workdone : String
+    workdone : String,
+    tasks : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : Tasks
+    }]
 
 })
 
