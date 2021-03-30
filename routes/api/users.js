@@ -41,7 +41,7 @@ var upload = multer({
 
 
 /* GET Users */
-router.get('/', auth,async function(req, res, next) {
+router.get('/',async function(req, res, next) {
   let user = await User.find()
   return res.send(user);
 });
