@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema({
-    task_name : String,
-    task_time : Date,
-    task_description : String,
+    name : String,
+    startTime : Date,
+    endTime : Date,
+    description : String,
 })
 
 const Tasks = mongoose.model("Tasks",taskSchema)

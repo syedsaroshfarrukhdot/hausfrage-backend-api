@@ -35,9 +35,10 @@ router.put("/:id",async (req, res) => {
       let task = await Tasks.findById(req.params.id);
       console.log(task)
       if (!task) return res.status(400).send("Task with given id is not present");
-      task.task_name = req.body.task_name;
-      task.task_time = req.body.task_time;
-      task.task_description = req.body.task_description;
+      task.name = req.body.name;
+      task.startTime = req.body.startTime;
+      task.endTime = req.body.endTime;
+      task.description = req.body.description;
       await task.save();
       return res.send(task);
     } catch {
