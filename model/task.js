@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema({
     task_name : String,
-    task_time : Date,
     task_description : String,
 })
 
