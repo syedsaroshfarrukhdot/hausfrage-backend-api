@@ -8,7 +8,7 @@ router.get("/show-projects",async (req,res) => {
   let page = Number(req.query.page ? req.query.page : 1);
   let perPage = Number(req.query.perPage ? req.query.perPage : 10);
   let skipRecords = perPage * (page - 1);
-  let projects = await Project.find().skip(skipRecords).limit(perPage);
+  let projects = await Project.find().populate('tasks').skip(skipRecords).limit(perPage);
   return res.send(projects);
 })
 

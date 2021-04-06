@@ -42,7 +42,11 @@ var upload = multer({
 
 /* GET Users */
 router.get('/',async function(req, res, next) {
-  let user = await User.find()
+    let page = Number(req.query.page ? req.query.page : 1);
+    let perPage = Number(req.query.perPage ? req.query.perPage : 10);
+    let skipRecords = perPage * (page - 1);
+    let user = await User.find().populate("Project").select("project_name est_hrs").skip(skipRecords).limit(perPage);
+    return res.send(tasks);
   return res.send(user);
 });
 
