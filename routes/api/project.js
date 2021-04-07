@@ -1,4 +1,5 @@
 var express = require("express");
+const { extend } = require("lodash");
 var router = express.Router();
 const _ = require("lodash");
 const { Project } = require("../../model/project");
@@ -8,7 +9,7 @@ router.get("/show-projects",async (req,res) => {
   let page = Number(req.query.page ? req.query.page : 1);
   let perPage = Number(req.query.perPage ? req.query.perPage : 10);
   let skipRecords = perPage * (page - 1);
-  let projects = await Project.find().populate('tasks').skip(skipRecords).limit(perPage);
+  let projects = await Project.find().populate('tasks').populate('createdBy', 'firstName').skip(skipRecords).limit(perPage);
   return res.send(projects);
 })
 
@@ -35,14 +36,7 @@ router.post("/create-project", async (req, res) => {
     let project = await Project.findById(req.params.id);
     console.log(project)
     if (!project) return res.status(400).send("Project with given id is not present");
-    project.project_name = req.body.project_name;
-    project.start_date = req.body.start_date;
-    project.end_date = req.body.end_date;
-    project.description = req.body.description;
-    project.est_hrs = req.body.est_hrs;
-    project.status = req.body.status;
-    project.remarks = req.body.remarks;
-    project.work_done = req.body.work_done;
+    project = extend(project,req.body)
     await project.save();
     return res.send(project);
   } catch {

@@ -1,20 +1,26 @@
 const mongoose = require("mongoose");
 const { Tasks } = require("./task");
+const { User } = require("./user");
 
 const projectScheme = mongoose.Schema({
 
-    project_name : String,
-    start_date : Date,
-    end_date : Date ,
+    name : String,
+    startDate : Date,
+    endDate : Date ,
     description : String,
-    est_hrs : Number,
+    estHrs : Number,
     status : { type: Number,  max: 3 },
     remarks : String,
     workdone : String,
     tasks : [{
         type : mongoose.Schema.Types.ObjectId,
-        ref : Tasks
-    }]
+        ref : "Tasks"
+    }],
+    createdBy : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User"
+    },
+   
 
 })
 

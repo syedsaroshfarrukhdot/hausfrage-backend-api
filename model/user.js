@@ -4,9 +4,9 @@ const { Project } = require('./project')
 
 
 const userSchema = mongoose.Schema({
-    first_name: String,
-    middle_name:String,
-    last_name:String,
+    firstName: String,
+    middleName:String,
+    lastName:String,
     email: String,
     password: String,
     image : String,

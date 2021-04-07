@@ -45,7 +45,7 @@ router.get('/',async function(req, res, next) {
     let page = Number(req.query.page ? req.query.page : 1);
     let perPage = Number(req.query.perPage ? req.query.perPage : 10);
     let skipRecords = perPage * (page - 1);
-    let user = await User.find().populate("Project").select("project_name est_hrs").skip(skipRecords).limit(perPage);
+    let user = await User.find().skip(skipRecords).limit(perPage);
     return res.send(tasks);
   return res.send(user);
 });
@@ -55,15 +55,15 @@ router.post("/register",upload, async (req, res) => {
     let user = await User.findOne({email:req.body.email});
     if (user) return res.status(400).send("User With Given Email Already Exsists");
     user = new User();
-    user.first_name = req.body.first_name;
-    user.middle_name = req.body.middle_name;
-    user.last_name = req.body.last_name;
+    user.firstName = req.body.firstName;
+    user.middleName = req.body.middleName;
+    user.lastName = req.body.lastName;
     user.email = req.body.email;
     user.image = req.file.path;
     user.password = req.body.password;
     await user.generateHashedPassword();
     await user.save();
-    return res.send(_.pick(user,['first_name','middle_name','last_name','email']));
+    return res.send(_.pick(user,['firstName','middleName','lastName','email']));
   });
 
 // Sign In
@@ -73,7 +73,7 @@ router.post("/login", async (req, res) => {
   let isValid = await bcrypt.compare(req.body.password, user.password);
   if (!isValid) return res.status(401).send("Invalid Password");
   let token = jwt.sign(
-    { _id: user._id, first_name: user.first_name, middle_name: user.middle_name, last_name : user.last_name , role: user.role },
+    { _id: user._id, firstName: user.firstName, middleName: user.middleName, lastName : user.lastName , role: user.role },
     config.get("jwtPrivateKey")
   );
   return res.send(token);
@@ -84,22 +84,22 @@ router.post("/login", async (req, res) => {
     try {
       let user = await User.findById(req.params.id);
       if (!user) return res.status(400).send("User with given id is not present");
-      user.first_name = req.body.first_name;
-      user.middle_name = req.body.middle_name;
-      user.last_name = req.body.last_name;
+      user.firstName = req.body.firstName;
+      user.middleName = req.body.middleName;
+      user.lastName = req.body.lastName;
       user.email = req.body.email;
       user.image = req.file.path;
       user.password = req.body.password;
       await user.generateHashedPassword();
       await user.save();
       let token = jwt.sign(
-        { _id: user._id, first_name: user.first_name, middle_name: user.middle_name, last_name : user.last_name , role: user.role },
+        { _id: user._id, firstName: user.firstName, middleName: user.middleName, lastName : user.lastName , role: user.role },
         config.get("jwtPrivateKey")
       );
       let dataToReturn = {
-        first_name: user.first_name,
-        middle_name: user.middle_name,
-        last_name: user.last_name,
+        firstName: user.firstName,
+        middleName: user.middleName,
+        lastName: user.lastName,
         email: user.email,
         token: user.token,
       };
