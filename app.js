@@ -11,7 +11,8 @@ var indexRouter = require('./routes/index');
 var apiUserRouter = require('./routes/api/users');
 var apiProjectRouter = require('./routes/api/project');
 var apiTasksRouter = require('./routes/api/tasks');
-var apiuserProjectsRouter= require('./routes/api/userProjects');
+var apiDesignationRouter = require('./routes/api/designation');
+
 
 
 var app = express();
@@ -30,7 +31,8 @@ app.use('/', indexRouter);
 app.use('/users', apiUserRouter);
 app.use('/projects', apiProjectRouter);
 app.use('/tasks', apiTasksRouter);
-app.use('/user-projects', apiuserProjectsRouter);
+app.use('/designation', apiDesignationRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

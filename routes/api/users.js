@@ -46,8 +46,7 @@ router.get('/',async function(req, res, next) {
     let perPage = Number(req.query.perPage ? req.query.perPage : 10);
     let skipRecords = perPage * (page - 1);
     let user = await User.find().skip(skipRecords).limit(perPage);
-    return res.send(tasks);
-  return res.send(user);
+    return res.send(user);
 });
 
 /* Signup . */
