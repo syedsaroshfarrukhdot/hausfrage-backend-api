@@ -6,10 +6,7 @@ const { formData } = require("../../model/formData");
 
 /*Get Projects*/
 router.get("/",async (req,res) => {
-  let page = Number(req.query.page ? req.query.page : 1);
-  let perPage = Number(req.query.perPage ? req.query.perPage : 10);
-  let skipRecords = perPage * (page - 1);
-  let formdata = await formData.find().skip(skipRecords).limit(perPage);
+  let formdata = await formData.find()
   return res.send(formdata);
 })
 
