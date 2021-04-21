@@ -8,11 +8,8 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var config = require("config");
 
-var indexRouter = require("./routes/index");
-var apiUserRouter = require("./routes/api/users");
-var apiProjectRouter = require("./routes/api/project");
-var apiTasksRouter = require("./routes/api/tasks");
-var apiDesignationRouter = require("./routes/api/designation");
+
+var apiFormData = require("./routes/api/dataForm");
 
 var app = express();
 
@@ -27,11 +24,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", apiUserRouter);
-app.use("/projects", apiProjectRouter);
-app.use("/tasks", apiTasksRouter);
-app.use("/designation", apiDesignationRouter);
+
+app.use("/", apiFormData);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

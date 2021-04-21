@@ -2,24 +2,21 @@ var express = require("express");
 const { extend } = require("lodash");
 var router = express.Router();
 const _ = require("lodash");
-const { Project } = require("../../model/project");
+const { formData } = require("../../model/formData");
 
 /*Get Projects*/
-router.get("/show-projects",async (req,res) => {
+router.get("/",async (req,res) => {
   let page = Number(req.query.page ? req.query.page : 1);
   let perPage = Number(req.query.perPage ? req.query.perPage : 10);
   let skipRecords = perPage * (page - 1);
-  let projects = await Project.find().populate('tasks').populate('createdBy', 'firstName').skip(skipRecords).limit(perPage);
-  return res.send(projects);
+  let formdata = await formData.find().skip(skipRecords).limit(perPage);
+  return res.send(formdata);
 })
 
 /* Add New Project . */
-router.post("/create-project", async (req, res) => {
-  let projects = await Project.findOne({ project_name: req.body.project_name });
-  if (projects)
-    return res.status(400).send("Project With Given Name Already Exsists");
-   project = new Project(req.body);
-  project
+router.post("/create-form", async (req, res) => {
+   data = new formData(req.body);
+  data
     .save()
     .then((resp) => {
       return res.send(resp);
