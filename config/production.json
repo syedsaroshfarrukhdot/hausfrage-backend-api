@@ -1,5 +1,5 @@
 {
-  "db": "mongodb+srv://sarosh:zaqxswcde1@cluster0.zk5ap.mongodb.net/test",
+  "db": "mongodb+srv://nassimbelafkih:zaqxswcde1@cluster0.xh2dd.mongodb.net/eigenheim",
   "jwtPrivateKey" : "SomePrivateKey"
   
 }
