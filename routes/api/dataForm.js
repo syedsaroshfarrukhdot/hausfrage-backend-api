@@ -3,11 +3,14 @@ const { extend } = require("lodash");
 var router = express.Router();
 const _ = require("lodash");
 const { formData } = require("../../model/formData");
+var checkSessionAuth = require("../../middlewares/checkSessionAuth");
+
 
 /*Get Projects*/
-router.get("/",async (req,res) => {
-  let formdata = await formData.find()
-  return res.send(formdata);
+router.get("/",checkSessionAuth,async (req,res) => {
+  let formdata = await formData.find();
+  res.render("list", { title: "Products In DB", formdata });
+  
 })
 
 /* Add New Project . */
