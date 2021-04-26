@@ -27,18 +27,11 @@ router.post("/create-form", async (req, res) => {
 });
 
  // Update Project
- router.put("/:id",async (req, res) => {
-
-  try {
-    let project = await Project.findById(req.params.id);
-    console.log(project)
-    if (!project) return res.status(400).send("Project with given id is not present");
-    project = extend(project,req.body)
-    await project.save();
-    return res.send(project);
-  } catch {
-    return res.status(400).send("Invalid Id"); // when id is inavlid
-  }
+ router.post("/create-form-edit/:id",async (req, res) => {
+  let formdata = await formData.findById(req.params.id);
+  formdata.Note = req.body.Note;
+  await formdata.save();
+  res.redirect("/");
 });
 
  // Delete user

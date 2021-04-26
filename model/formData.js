@@ -21,6 +21,7 @@ const formDataSchema = mongoose.Schema({
     Day : String,
     Month : String,
     Year : String,
+    Note : String
     
    
 

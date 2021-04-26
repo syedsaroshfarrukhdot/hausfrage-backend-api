@@ -5,7 +5,7 @@ var checkSessionAuth = require("../../middlewares/checkSessionAuth");
 
 
 /* GET users listing. */
-router.get("/register",checkSessionAuth, function (req, res, next) {
+router.get("/register", function (req, res, next) {
   res.render("register");
 });
 router.get("/login", function (req, res, next) {
