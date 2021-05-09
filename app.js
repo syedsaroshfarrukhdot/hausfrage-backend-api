@@ -9,6 +9,7 @@ var mongoose = require("mongoose");
 var config = require("config");
 var apiFormData = require("./routes/api/dataForm");
 var apiUserRouter = require("./routes/api/users");
+var apiZinKing = require("./routes/api/zinKing");
 var session = require("express-session");
 
 
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use("/", apiFormData);
+app.use("/zinking", apiZinKing);
 app.use("/users", apiUserRouter);
 
 

@@ -36,51 +36,45 @@ html
     table
                       thead
                           tr
-                              th First Name
-                              th Last Name
-                              th Email
                               th Day
                               th Month
                               th Year
-                              th Phone
-                              th Post Code
-                              th StepTwo
-                              th StepThree
+                              th Email
                               th StepFour
                               th StepFive
-                              th StepSix
-                              th StepSeven
+                              th StepSix                             
+                              th StepSeven                             
                               th StepEight
-                              th StepNine
-                              th StepTen
+                              th PLZ
+                              th ORT
+                              th Straße
+                              th Nachname
+                              th Telefon
                               th Note
                               th Save
                               
 
                               
                       tbody
-                          each form in formdata
+                          each zin in zinking
                               tr
-                                  td=form.firstName
-                                  td=form.lastName
-                                  td=form.email
-                                  td=form.Day
-                                  td=form.Month
-                                  td=form.Year
-                                  td=form.phone
-                                  td=form.postcode
-                                  td=form.StepTwo
-                                  td=form.StepThree
-                                  td=form.StepFour
-                                  td=form.StepFive
-                                  td=form.StepSix
-                                  td=form.StepSeven
-                                  td=form.StepEight
-                                  td=form.StepNine
-                                  td=form.StepTen
-                                  form(id="note_submit" action=`/create-form-edit/${form.id}`,method="POST")
+                                  td=zin.Day
+                                  td=zin.Month
+                                  td=zin.Year
+                                  td=zin.Email
+                                  td=zin.StepFour
+                                  td=zin.StepFive
+                                  td=zin.StepSix
+                                  td=zin.StepSeven
+                                  td=zin.StepEight
+                                  td=zin.PLZ
+                                  td=zin.ORT
+                                  td=zin.Straße
+                                  td=zin.Nachname
+                                  td=zin.Telefon
+                                  form(id="note_submit_zinking" action=`/zinking/create-form-edit/${zin.id}`,method="POST")
                                     td
-                                      input(name="Note" type="text" value=`${form.Note}`)
+                                      input(name="Note" type="text" value=`${zin.Note}`)
                                     td
                                       input(type="submit" value="Save")
                                   
