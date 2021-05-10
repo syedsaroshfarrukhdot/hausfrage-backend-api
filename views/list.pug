@@ -36,6 +36,7 @@ html
     table
                       thead
                           tr
+                              th Date And Time
                               th First Name
                               th Last Name
                               th Email
@@ -56,11 +57,13 @@ html
                               th Note
                               th Save
                               
+                              
 
                               
                       tbody
                           each form in formdata
                               tr
+                                  td=form.createdAt
                                   td=form.firstName
                                   td=form.lastName
                                   td=form.email

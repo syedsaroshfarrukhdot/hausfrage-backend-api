@@ -36,6 +36,7 @@ html
     table
                       thead
                           tr
+                              th Date And Time
                               th Day
                               th Month
                               th Year
@@ -58,6 +59,7 @@ html
                       tbody
                           each zin in zinking
                               tr
+                                  td=zin.createdAt
                                   td=zin.Day
                                   td=zin.Month
                                   td=zin.Year

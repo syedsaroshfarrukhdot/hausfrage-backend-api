@@ -23,7 +23,7 @@ const zinkingSchema = mongoose.Schema({
     
    
 
-})
+},{ timestamps: true })
 
 const zinKing = mongoose.model("zinKing",zinkingSchema)
 

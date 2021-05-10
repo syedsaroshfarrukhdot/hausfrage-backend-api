@@ -21,11 +21,12 @@ const formDataSchema = mongoose.Schema({
     Day : String,
     Month : String,
     Year : String,
-    Note : String
+    Note : String,
+ 
     
    
 
-})
+},{ timestamps: true })
 
 const formData = mongoose.model("formData",formDataSchema)
 
