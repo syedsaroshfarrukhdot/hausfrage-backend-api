@@ -60,7 +60,6 @@ router.post("/register", async (req, res) => {
 
 // Sign In
 router.post("/login", async (req, res) => {
-  console.log(req.body);
   let user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("User Not Registered");
   let isValid = await bcrypt.compare(req.body.password, user.password);

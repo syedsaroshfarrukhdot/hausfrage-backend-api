@@ -4,9 +4,10 @@ var router = express.Router();
 const _ = require("lodash");
 const { zinKing } = require("../../model/zinKing");
 var checkSessionAuth = require("../../middlewares/checkSessionAuth");
+var auth = require("../../middlewares/auth");
 
 /*Get Projects*/
-router.get("/get-data", async (req, res) => {
+router.get("/get-data", auth, async (req, res) => {
   let zinking = await zinKing.find();
   res.send(zinking);
 });
@@ -38,17 +39,17 @@ router.put("/create-form-edit/:id", async (req, res) => {
   }
 });
 
-// Delete user
-router.delete("/:id", async (req, res) => {
-  try {
-    let zinking = await zinKing.findByIdAndDelete(req.params.id);
-    if (!zinking) {
-      return res.status(400).send("Data with given id is not present"); // when there is no id in db
-    }
-    return res.send(zinking); // when everything is okay
-  } catch {
-    return res.status(400).send("Invalid Id"); // when id is inavlid
-  }
-});
+// // Delete user
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     let zinking = await zinKing.findByIdAndDelete(req.params.id);
+//     if (!zinking) {
+//       return res.status(400).send("Data with given id is not present"); // when there is no id in db
+//     }
+//     return res.send(zinking); // when everything is okay
+//   } catch {
+//     return res.status(400).send("Invalid Id"); // when id is inavlid
+//   }
+// });
 
 module.exports = router;
