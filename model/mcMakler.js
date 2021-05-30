@@ -16,6 +16,8 @@ const mcmaklerSchema = mongoose.Schema(
     Nachname: String,
     Email: String,
     Phone: Number,
+    Note: String,
+    Option: String,
   },
   { timestamps: true }
 );
