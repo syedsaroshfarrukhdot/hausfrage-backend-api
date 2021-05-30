@@ -10,6 +10,7 @@ var config = require("config");
 var apiFormData = require("./routes/api/dataForm");
 var apiUserRouter = require("./routes/api/users");
 var apiZinKing = require("./routes/api/zinKing");
+var apiMcMakler = require("./routes/api/mcmakler");
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", apiFormData);
 app.use("/zinking", apiZinKing);
+app.use("/mcmakler", apiMcMakler);
 app.use("/users", apiUserRouter);
 
 // catch 404 and forward to error handler
