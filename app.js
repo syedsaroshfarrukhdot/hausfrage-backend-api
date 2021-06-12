@@ -11,6 +11,11 @@ var apiFormData = require("./routes/api/dataForm");
 var apiUserRouter = require("./routes/api/users");
 var apiZinKing = require("./routes/api/zinKing");
 var apiMcMakler = require("./routes/api/mcmakler");
+var apiGrundstuck = require("./routes/api/immobilierichtigverkaufen/Grundstuck");
+var apiWohnung = require("./routes/api/immobilierichtigverkaufen/Wohnung");
+var apiGewerbe = require("./routes/api/immobilierichtigverkaufen/Gewerbe");
+var apiHaus = require("./routes/api/immobilierichtigverkaufen/Haus");
+var apiHausMehrfamilienhausg = require("./routes/api/immobilierichtigverkaufen/HausMehrfamilienhausg");
 
 var app = express();
 
@@ -39,6 +44,11 @@ app.use("/", apiFormData);
 app.use("/zinking", apiZinKing);
 app.use("/mcmakler", apiMcMakler);
 app.use("/users", apiUserRouter);
+app.use("/grundstuck", apiGrundstuck);
+app.use("/wohnung", apiWohnung);
+app.use("/gewerbe", apiGewerbe);
+app.use("/haus", apiHaus);
+app.use("/haus-mehrfamilienhausg", apiHausMehrfamilienhausg);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
