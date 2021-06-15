@@ -16,6 +16,9 @@ var apiWohnung = require("./routes/api/immobilierichtigverkaufen/Wohnung");
 var apiGewerbe = require("./routes/api/immobilierichtigverkaufen/Gewerbe");
 var apiHaus = require("./routes/api/immobilierichtigverkaufen/Haus");
 var apiHausMehrfamilienhausg = require("./routes/api/immobilierichtigverkaufen/HausMehrfamilienhausg");
+var apiHomeDayGrundStuck = require("./routes/api/homeday/Grundstuck");
+var apiHomeDayHaus = require("./routes/api/homeday/Haus");
+var apiHomeDayWohnung = require("./routes/api/homeday/Wohnung");
 
 var app = express();
 
@@ -49,6 +52,9 @@ app.use("/wohnung", apiWohnung);
 app.use("/gewerbe", apiGewerbe);
 app.use("/haus", apiHaus);
 app.use("/haus-mehrfamilienhausg", apiHausMehrfamilienhausg);
+app.use("/homeday-grundstuck", apiHomeDayGrundStuck);
+app.use("/homeday-haus", apiHomeDayHaus);
+app.use("/homeday-wohnung", apiHomeDayWohnung);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
