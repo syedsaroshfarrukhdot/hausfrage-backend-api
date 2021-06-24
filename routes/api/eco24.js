@@ -2,19 +2,19 @@ var express = require("express");
 const { extend } = require("lodash");
 var router = express.Router();
 const _ = require("lodash");
-const { zinKing } = require("../../model/zinKing");
+const { eco24 } = require("../../model/eco24");
 var checkSessionAuth = require("../../middlewares/checkSessionAuth");
 var auth = require("../../middlewares/auth");
 
 /*Get Projects*/
-router.get("/get-data", auth, async (req, res) => {
-  let zinking = await zinKing.find();
-  res.send(zinking);
+router.get("/", auth, async (req, res) => {
+  let eco = await eco24.find();
+  res.send(eco);
 });
 
 /* Add New Project . */
 router.post("/create-form", async (req, res) => {
-  data = new zinKing(req.body);
+  data = new eco24(req.body);
   data
     .save()
     .then((resp) => {
@@ -28,12 +28,12 @@ router.post("/create-form", async (req, res) => {
 // Update Project
 router.put("/create-form-edit/:id", auth, async (req, res) => {
   try {
-    let zinking = await zinKing.findById(req.params.id);
-    console.log(zinking);
-    if (!zinking) return res.status(400).send("Id is not present");
-    zinking = extend(zinking, req.body);
-    await zinking.save();
-    return res.send(zinking);
+    let eco = await eco24.findById(req.params.id);
+    console.log(eco);
+    if (!eco) return res.status(400).send("Id is not present");
+    eco = extend(eco, req.body);
+    await eco.save();
+    return res.send(eco);
   } catch {
     return res.status(400).send("Invalid Id"); // when id is inavlid
   }

@@ -19,6 +19,7 @@ var apiHausMehrfamilienhausg = require("./routes/api/immobilierichtigverkaufen/H
 var apiHomeDayGrundStuck = require("./routes/api/homeday/Grundstuck");
 var apiHomeDayHaus = require("./routes/api/homeday/Haus");
 var apiHomeDayWohnung = require("./routes/api/homeday/Wohnung");
+var apiEco24 = require("./routes/api/eco24");
 
 var app = express();
 
@@ -55,6 +56,7 @@ app.use("/haus-mehrfamilienhausg", apiHausMehrfamilienhausg);
 app.use("/homeday-grundstuck", apiHomeDayGrundStuck);
 app.use("/homeday-haus", apiHomeDayHaus);
 app.use("/homeday-wohnung", apiHomeDayWohnung);
+app.use("/eco24", apiEco24);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

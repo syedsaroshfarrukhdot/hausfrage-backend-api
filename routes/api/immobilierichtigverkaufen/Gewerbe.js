@@ -28,7 +28,7 @@ router.post("/create-form", async (req, res) => {
 });
 
 // Update Project
-router.put("/create-form-edit/:id", async (req, res) => {
+router.put("/create-form-edit/:id", auth, async (req, res) => {
   try {
     let gewerbe = await Gewerbe.findById(req.params.id);
     console.log(gewerbe);
